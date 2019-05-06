@@ -12,7 +12,7 @@ import time
 from DotsNBoxes import DotsNBoxes
 from QNN import Q_NN
 from Qtable import Q_table
-'''
+
 plays = [100,1000,10000]
 for pixel in [2,3]:
 	Performance = []
@@ -38,7 +38,7 @@ for pixel in [2,3]:
     plt.plot(plays,y3,'g',label='tie')
     plt.legend()
     plt.savefig(str(pixel)+'_table_grids.png')
-'''
+
 
 plays = [100,1000,10000]
 for pixel in [2,3]:
