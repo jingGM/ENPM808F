@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  The common turtlebot library of xacros for easy reference
+ -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- General -->
+  <xacro:include filename="$(find finalproject)/models/urdf/common_properties.urdf.xacro"/>
+  <xacro:include filename="$(find finalproject)/models/urdf/turtlebot_properties.urdf.xacro"/>
+  <xacro:include filename="$(find finalproject)/models/urdf/hokuyo.urdf.xacro"/>
+
+  <xacro:include filename="$(find create_description)/urdf/create.urdf.xacro"/>
+  <xacro:include filename="$(find finalproject)/models/urdf/sensors/asus_xtion_pro.urdf.xacro"/>
+  <xacro:include filename="$(find finalproject)/models/urdf/sensors/asus_xtion_pro_offset.urdf.xacro"/>
+
+</robot>
