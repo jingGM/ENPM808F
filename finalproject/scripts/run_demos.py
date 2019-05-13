@@ -84,7 +84,7 @@ if __name__ == '__main__':
     # Parameters are stored in a yaml file inside the config directory
     # They are loaded at runtime by the launch file
     Alpha = rospy.get_param("/turtlebot2/alpha")
-    Epsilon = rospy.get_param("/turtlebot2/epsilon")
+    Epsilon = 0#rospy.get_param("/turtlebot2/epsilon")
     Gamma = rospy.get_param("/turtlebot2/gamma")
     epsilon_discount = rospy.get_param("/turtlebot2/epsilon_discount")
     nepisodes = rospy.get_param("/turtlebot2/nepisodes")
@@ -97,7 +97,7 @@ if __name__ == '__main__':
                            alpha=Alpha, gamma=Gamma, epsilon=Epsilon)
     initial_epsilon = qlearn.epsilon
 
-    #qlearn.q = loadQtable("../Qvalue/maze_984",1)
+    qlearn.q = loadQtable("../Qvalue/maze_984",1)
 
     start_time = time.time()
     highest_reward = 0

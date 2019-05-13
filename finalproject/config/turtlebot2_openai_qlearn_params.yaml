@@ -4,12 +4,12 @@ turtlebot2: #namespace
     pos_step: 0.016     # increment in position for each command
     
     #qlearn parameters
-    alpha: 1.0
+    alpha: 0.5
     gamma: 0.7
-    epsilon: 0.9
+    epsilon: 0.5
     epsilon_discount: 0.999
-    nepisodes: 5000
-    nsteps: 5000
+    nepisodes: 2000
+    nsteps: 2000
     number_splits: 10 #set to change the number of state splits for the continuous problem and also the number of env_variable splits
 
     running_step: 0.06 # Time for each step
@@ -20,22 +20,23 @@ turtlebot2: #namespace
 
     speed_step: 1.0 # Time to wait in the reset phases
 
-    linear_forward_speed: 0.5 # Spawned for ging fowards
+    linear_forward_speed: 0.3 # Spawned for ging fowards
     linear_turn_speed: 0.1 # Lienare speed when turning
     angular_speed: 0.3 # Angular speed when turning Left or Right
     init_linear_forward_speed: 0.0 # Initial linear speed in which we start each episode
     init_linear_turn_speed: 0.0 # Initial angular speed in shich we start each episode
     
-    new_ranges: 5 # How many laser readings we jump in each observation reading, the bigger the less laser resolution
-    min_range: 0.5 # Minimum meters below wich we consider we have crashed
+    new_ranges: 1 # How many laser readings we jump in each observation reading, the bigger the less laser resolution
     max_laser_value: 6 # Value considered Ok, no wall
     min_laser_value: 0 # Value considered there is an obstacle or crashed
     
-    number_of_sectors: 5 # How many sectors we have
+    number_of_sectors: 10 # How many sectors we have
     min_range: 0.3 # Minimum meters below wich we consider we have crashed
-    middle_range: 1.0 # Minimum meters below wich we consider we have crashed
-    danger_laser_value: 2 # Value considered Ok, no wall
-    middle_laser_value: 1 # Middle value
+    middle_range: 1 # Minimum meters below wich we consider we have crashed
+    large_range: 1.5 # Minimum meters below wich we consider we have crashed
+    danger_laser_value: 3 # Value considered Ok, no wall
+    middles_laser_value: 2
+    middlel_laser_value: 1 # Middle value
     safe_laser_value: 0 # Value considered there is an obstacle or crashed
     
     forwards_reward: 5 # Points Given to go forwards

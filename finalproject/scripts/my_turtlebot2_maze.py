@@ -51,9 +51,11 @@ class MyTurtleBot2MazeEnv(turtlebot2_env.TurtleBot2Env):
         self.number_of_sectors = rospy.get_param('/turtlebot2/number_of_sectors')
         self.min_range = rospy.get_param('/turtlebot2/min_range')
         self.middle_range = rospy.get_param('/turtlebot2/middle_range')
+        self.large_range = rospy.get_param('/turtlebot2/large_range')
         
         self.danger_laser_value = rospy.get_param('/turtlebot2/danger_laser_value')
-        self.middle_laser_value = rospy.get_param('/turtlebot2/middle_laser_value')
+        self.middles_laser_value = rospy.get_param('/turtlebot2/middles_laser_value')
+        self.middlel_laser_value = rospy.get_param('/turtlebot2/middlel_laser_value')
         self.safe_laser_value = rospy.get_param('/turtlebot2/safe_laser_value')
         
         
@@ -129,10 +131,7 @@ class MyTurtleBot2MazeEnv(turtlebot2_env.TurtleBot2Env):
             linear_speed = self.linear_turn_speed
             angular_speed = -1*self.angular_speed
             self.last_action = "TURN_RIGHT"
-        elif action == 3: #RIGHT
-            linear_speed = -self.linear_turn_speed
-            angular_speed = 0.0
-            self.last_action = "BACKWARDS"
+
 
         
         # We tell TurtleBot2 the linear and angular speed to set to execute
@@ -177,8 +176,6 @@ class MyTurtleBot2MazeEnv(turtlebot2_env.TurtleBot2Env):
         if not done:
             if self.last_action == "FORWARDS":
                 reward = self.forwards_reward
-            elif self.last_action == "BACKWARDS":
-                reward = -1*self.forwards_reward
             else:
                 reward = self.turn_reward
         else:
@@ -224,11 +221,15 @@ class MyTurtleBot2MazeEnv(turtlebot2_env.TurtleBot2Env):
                 rospy.logerr(">>>>>>>>>>>>NAN VALUE=>>>"+str(item))
             
             elif (self.min_range >= item ):
-                sector_readings[current_sector] = self.danger_laser_value
+                if sector_readings[current_sector] < self.danger_laser_value:
+                    sector_readings[current_sector] = self.danger_laser_value
             
             elif (self.middle_range >= item > self.min_range):
-                sector_readings[current_sector] = self.middle_laser_value
-
+                if sector_readings[current_sector] < self.middles_laser_value:
+                    sector_readings[current_sector] = self.middles_laser_value
+            elif (self.large_range >= item > self.middle_range):
+                if sector_readings[current_sector] < self.middlel_laser_value:
+                    sector_readings[current_sector] = self.middlel_laser_value
 
         return sector_readings
         
